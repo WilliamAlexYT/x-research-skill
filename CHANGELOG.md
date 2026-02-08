@@ -36,3 +36,12 @@
 - SKILL.md with agentic research loop (decompose → search → refine → follow threads → deep-dive → synthesize)
 - `references/x-api.md` with full X API endpoint reference
 - Search operators, pagination, thread following, linked content deep-diving
+
+## v2.1.0 (2026-02-08)
+
+### Added
+- **`--since` time filter** — search only recent tweets: `--since 1h`, `--since 3h`, `--since 30m`, `--since 1d`
+  - Accepts shorthand (`1h`, `30m`, `2d`) or ISO 8601 timestamps
+  - Great for monitoring during catalysts or checking what just dropped
+- Minutes support (`30m`, `15m`) in addition to hours and days
+- Cache keys now include time filter to prevent stale results across different time ranges

@@ -106,6 +106,37 @@ function parseTweets(raw: RawResponse): Tweet[] {
 const FIELDS =
   "tweet.fields=created_at,public_metrics,author_id,conversation_id,entities&expansions=author_id&user.fields=username,name,public_metrics";
 
+/**
+ * Parse a "since" value into an ISO 8601 timestamp.
+ * Accepts: "1h", "2h", "6h", "12h", "1d", "2d", "3d", "7d"
+ * Or a raw ISO 8601 string.
+ */
+function parseSince(since: string): string | null {
+  // Check for shorthand like "1h", "3h", "1d"
+  const match = since.match(/^(\d+)(m|h|d)$/);
+  if (match) {
+    const num = parseInt(match[1]);
+    const unit = match[2];
+    const ms =
+      unit === "m" ? num * 60_000 :
+      unit === "h" ? num * 3_600_000 :
+      num * 86_400_000;
+    const startTime = new Date(Date.now() - ms);
+    return startTime.toISOString();
+  }
+
+  // Check if it's already ISO 8601
+  if (since.includes("T") || since.includes("-")) {
+    try {
+      return new Date(since).toISOString();
+    } catch {
+      return null;
+    }
+  }
+
+  return null;
+}
+
 async function apiGet(url: string): Promise<RawResponse> {
   const token = getToken();
   const res = await fetch(url, {
@@ -137,12 +168,22 @@ export async function search(
     maxResults?: number;
     pages?: number;
     sortOrder?: "relevancy" | "recency";
+    since?: string; // ISO 8601 timestamp or shorthand like "1h", "3h", "1d"
   } = {}
 ): Promise<Tweet[]> {
   const maxResults = Math.max(Math.min(opts.maxResults || 100, 100), 10);
   const pages = opts.pages || 1;
   const sort = opts.sortOrder || "relevancy";
   const encoded = encodeURIComponent(query);
+
+  // Build time filter
+  let timeFilter = "";
+  if (opts.since) {
+    const startTime = parseSince(opts.since);
+    if (startTime) {
+      timeFilter = `&start_time=${startTime}`;
+    }
+  }
 
   let allTweets: Tweet[] = [];
   let nextToken: string | undefined;
@@ -151,7 +192,7 @@ export async function search(
     const pagination = nextToken
       ? `&pagination_token=${nextToken}`
       : "";
-    const url = `${BASE}/tweets/search/recent?query=${encoded}&max_results=${maxResults}&${FIELDS}&sort_order=${sort}${pagination}`;
+    const url = `${BASE}/tweets/search/recent?query=${encoded}&max_results=${maxResults}&${FIELDS}&sort_order=${sort}${timeFilter}${pagination}`;
 
     const raw = await apiGet(url);
     const tweets = parseTweets(raw);

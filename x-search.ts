@@ -84,6 +84,7 @@ async function cmdSearch() {
   const minImpressions = parseInt(getOpt("min-impressions") || "0");
   const pages = Math.min(parseInt(getOpt("pages") || "1"), 5);
   const limit = parseInt(getOpt("limit") || "15");
+  const since = getOpt("since");
   const noReplies = getFlag("no-replies");
   const noRetweets = getFlag("no-retweets");
   const save = getFlag("save");
@@ -108,7 +109,7 @@ async function cmdSearch() {
   }
 
   // Check cache
-  const cacheParams = `sort=${sortOpt}&pages=${pages}`;
+  const cacheParams = `sort=${sortOpt}&pages=${pages}&since=${since || "7d"}`;
   const cached = cache.get(query, cacheParams);
   let tweets: api.Tweet[];
 
@@ -119,6 +120,7 @@ async function cmdSearch() {
     tweets = await api.search(query, {
       pages,
       sortOrder: sortOpt === "recent" ? "recency" : "relevancy",
+      since: since || undefined,
     });
     cache.set(query, cacheParams, tweets);
   }
@@ -168,8 +170,9 @@ async function cmdSearch() {
   }
 
   // Stats to stderr
+  const sinceLabel = since ? ` | since ${since}` : "";
   console.error(
-    `\n${tweets.length} tweets | sorted by ${sortOpt} | ${pages} page(s)`
+    `\n${tweets.length} tweets | sorted by ${sortOpt} | ${pages} page(s)${sinceLabel}`
   );
 }
 
@@ -348,6 +351,7 @@ Commands:
 
 Search options:
   --sort likes|impressions|retweets|recent   (default: likes)
+  --since 1h|3h|12h|1d|7d   Time filter (default: last 7 days)
   --min-likes N              Filter minimum likes
   --min-impressions N        Filter minimum impressions
   --pages N                  Pages to fetch, 1-5 (default: 1)

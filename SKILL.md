@@ -35,6 +35,7 @@ bun run x-search.ts search "<query>" [options]
 
 **Options:**
 - `--sort likes|impressions|retweets|recent` — sort order (default: likes)
+- `--since 1h|3h|12h|1d|7d` — time filter (default: last 7 days). Also accepts minutes (`30m`) or ISO timestamps.
 - `--min-likes N` — filter by minimum likes
 - `--min-impressions N` — filter by minimum impressions
 - `--pages N` — pages to fetch, 1-5 (default: 1, 100 tweets/page)

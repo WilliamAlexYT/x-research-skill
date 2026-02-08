@@ -89,6 +89,7 @@ bun run x-search.ts search "query" --save --markdown
 ### Search options
 ```
 --sort likes|impressions|retweets|recent   (default: likes)
+  --since 1h|3h|12h|1d|7d     Time filter (default: last 7 days)
 --min-likes N              Filter minimum likes
 --min-impressions N        Filter minimum impressions
 --pages N                  Pages to fetch, 1-5 (default: 1, 100 tweets/page)
