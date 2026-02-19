@@ -12,6 +12,9 @@
  *   watchlist remove <user>     Remove user from watchlist
  *   watchlist check             Check recent tweets from all watchlist accounts
  *   cache clear                 Clear search cache
+ *   bookmarks                   Check new bookmarks for relevant content
+ *   bookmarks --show            Display current bookmark alerts
+ *   bookmarks --clear           Clear processed alerts
  *
  * Search options:
  *   --sort likes|impressions|retweets|recent   Sort order (default: likes)
@@ -433,6 +436,18 @@ async function main() {
     case "cache":
       await cmdCache();
       break;
+    case "bookmarks":
+    case "bm": {
+      // Delegate to dedicated bookmarks script
+      const { spawnSync } = await import("child_process");
+      const result = spawnSync(
+        "bun",
+        ["run", join(import.meta.dir, "scripts/bookmarks.ts"), ...args.slice(1)],
+        { stdio: "inherit", env: process.env }
+      );
+      process.exit(result.status ?? 0);
+      break;
+    }
     default:
       usage();
   }
